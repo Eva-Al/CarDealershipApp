@@ -1,13 +1,18 @@
 package com.dealership.app;
 
 import com.dealership.data.vehicle.VehicleType;
+import com.dealership.models.Vehicle;
 import com.dealership.services.*;
 
 import java.time.LocalDate;
 import java.util.*;
 
 public class Main {
+	 
     public static void main(String[] args) {
+    	
+    	 
+    	
         Scanner scanner = new Scanner(System.in);
         InventoryManager inventoryManager = new InventoryManager();
         SalesService salesService = new SalesService();
@@ -31,11 +36,12 @@ public class Main {
                 scanner.nextLine(); // Clear invalid input
                 continue; // Skip to next iteration of loop
             }
-
-            if (choice == 1) {
-                // === Make ===
+             
+            switch(choice) {
+            case 1: 
+            	 // === Make ===
                 System.out.println("Enter the make:");
-                String make = scanner.nextLine().trim();
+                 String make = scanner.nextLine().trim();
                 while (!make.matches("^[A-Za-z ]+$")) {
                     System.out.println("Invalid input. Please enter only letters.");
                     make = scanner.nextLine().trim();
@@ -104,28 +110,48 @@ public class Main {
                 scanner.nextLine(); // Clear newline
 
                 // === Type ===
-                List<String> allowedTypes = Arrays.asList("SEDAN", "SUV", "TRUCK", "COUPE", "HATCHBACK", "VAN");
-                System.out.println("Select the vehicle type from the following options:");
-                System.out.println(String.join(", ", allowedTypes));
-                System.out.print("Enter the type: ");
-                String type = scanner.nextLine().trim().toUpperCase();
-                while (!allowedTypes.contains(type)) {
-                    System.out.println("Invalid type. Please enter one of the following:");
-                    System.out.println(String.join(", ", allowedTypes));
-                    System.out.print("Try again: ");
-                    type = scanner.nextLine().trim().toUpperCase();
+  
+                VehicleType type = null;
+                while (type == null) {
+                    System.out.println("Select the vehicle type from the following options:");
+                    for (VehicleType t : VehicleType.values()) {
+                        System.out.println("- " + t);
+                    }
+                    System.out.print("Enter the type: ");
+                    String input = scanner.nextLine().trim().toUpperCase();
+
+                    try {
+                        type = VehicleType.valueOf(input); // Try to convert input to enum
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("❌ Invalid type. Please choose from the listed options.\n");
+                    }
                 }
-
-                // Placeholder: Add the vehicle to inventory (you can implement this next)
+                
+                // Add the vehicle to inventory (you can implement this next)
+                Vehicle vehicle = new Vehicle(make, model, year, vinNumber, mileage, price, type);
+                inventoryManager.addVehicle(vehicle);
                 System.out.println("\n✅ Vehicle added successfully!\n");
-            }
-
-            if (choice == 5) {
-                System.out.println("Exiting... Thank you!");
                 break;
-            }
-        }
+                
+            case 2 :  
+                break;
+                
+            case 3 :  
+                break;
+                
+            case 4 :  
+                break;
+                
+            case 5 :  
+           	  System.out.println("Exiting... Thank you!");
+           	scanner.close();              
+           	return;
+           	default:
+               System.out.println("Invalid choice. Please select a valid option.");  
+            	}       
 
-        scanner.close();
+        }  
+       
     }
+    
 }

@@ -1,5 +1,10 @@
 package com.dealership.data.vehicle;
 
-public class VehicleType {
-
+public enum VehicleType {
+    SEDAN,
+    SUV,
+    TRUCK,
+    COUPE,
+    HATCHBACK,
+    VAN
 }
