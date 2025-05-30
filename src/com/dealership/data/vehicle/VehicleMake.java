@@ -1,5 +1,15 @@
 package com.dealership.data.vehicle;
 
-public class VehicleMake {
+public enum VehicleMake {
+    TOYOTA,
+    FORD,
+    HONDA,
+    CHEVROLET,
+    TESLA,
+    JEEP,
+    BMW,
+    AUDI,
+    HYUNDAI,
+    KIA
 
 }

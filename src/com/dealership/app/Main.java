@@ -1,5 +1,7 @@
 package com.dealership.app;
 
+import com.dealership.data.vehicle.VehicleMake;
+import com.dealership.data.vehicle.VehicleModel;
 import com.dealership.data.vehicle.VehicleType;
 import com.dealership.models.Vehicle;
 import com.dealership.services.*;
@@ -37,22 +39,42 @@ public class Main {
                 continue; // Skip to next iteration of loop
             }
              
-            switch(choice) {
+			switch(choice) {
             case 1: 
             	 // === Make ===
-                System.out.println("Enter the make:");
-                 String make = scanner.nextLine().trim();
-                while (!make.matches("^[A-Za-z ]+$")) {
-                    System.out.println("Invalid input. Please enter only letters.");
-                    make = scanner.nextLine().trim();
+                System.out.println("Select the vehicle make from the following options:");
+                VehicleMake make = null;
+                while (make == null) {
+                    System.out.println("Select the vehicle make from the following options:");
+                    for (VehicleMake t : VehicleMake.values()) {
+                        System.out.println("- " + t);
+                    }
+                    System.out.print("Enter the make: ");
+                    String input = scanner.nextLine().trim().toUpperCase();
+
+                    try {
+                        make = VehicleMake.valueOf(input); // Try to convert input to enum
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("❌ Invalid type. Please choose from the listed options.\n");
+                    }
                 }
 
                 // === Model ===
-                System.out.println("Enter the model:");
-                String model = scanner.nextLine().trim();
-                while (!model.matches("^[A-Za-z ]+$")) {
-                    System.out.println("Invalid input. Please enter only letters.");
-                    model = scanner.nextLine().trim();
+                System.out.println("Select the vehicle model from the following options:");
+                VehicleModel model = null;
+                while (model == null) {
+                    System.out.println("Select the vehicle model from the following options:");
+                    for (VehicleModel t : VehicleModel.values()) {
+                        System.out.println("- " + t);
+                    }
+                    System.out.print("Enter the model: ");
+                    String input = scanner.nextLine().trim().toUpperCase();
+
+                    try {
+                        model = VehicleModel.valueOf(input); // Try to convert input to enum
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("❌ Invalid type. Please choose from the listed options.\n");
+                    }
                 }
 
                 // === Year ===
@@ -134,6 +156,16 @@ public class Main {
                 break;
                 
             case 2 :  
+            	List<Vehicle> vehicleList = inventoryManager.getAllVehicles();
+
+            	if (vehicleList.isEmpty()) {
+            	    System.out.println("🚫 No vehicles available in the inventory.");
+            	} else {
+            	    System.out.println("🚗 Available Vehicles:");
+            	    for (Vehicle v : vehicleList) {
+            	        System.out.println(v);
+            	    }
+            	}
                 break;
                 
             case 3 :  

@@ -1,14 +1,15 @@
 package com.dealership.models;
 
+import com.dealership.data.vehicle.VehicleMake;
+import com.dealership.data.vehicle.VehicleModel;
 import com.dealership.data.vehicle.VehicleType;
 
 public class Vehicle 
 {
 	
 	
-	private String make;
-
-	private String model;
+	private VehicleMake make;
+	private VehicleModel model;
 
 	private int year;
 
@@ -21,7 +22,7 @@ public class Vehicle
 	private VehicleType type; 
 	
 
-	public Vehicle(String make, String model, int year, String vinNumber, int mileage, double price, VehicleType type) 
+	public Vehicle(VehicleMake make, VehicleModel model, int year, String vinNumber, int mileage, double price, VehicleType type) 
 	{
 		this.make = make;
 		this.model = model;
@@ -32,11 +33,11 @@ public class Vehicle
 	}
 	
 	public String getMake() {
-		return make;
+		return make.toString();
 	}
 
 	public String getModel() {
-		return model;
+		return model.toString();
 	}
 
 	public int getYear() {
@@ -59,7 +60,12 @@ public class Vehicle
 	public String getType() {
 		return type.toString();
 	}
-
+	@Override
+	public String toString() {
+	    return make + " " + model + " (" + year + "), VIN: " + vinNumber +
+	           ", Mileage: " + mileage + " mi, Price: $" + price +
+	           ", Type: " + type;
+	}
 
 	
 	
