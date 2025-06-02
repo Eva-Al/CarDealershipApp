@@ -28,6 +28,7 @@ public class Vehicle
 		this.model = model;
 		this.year = year;
 		this.vinNumber = vinNumber;
+		this.mileage = mileage;
 		this.price = price;
 		this.type = type;		
 	}
