@@ -10,10 +10,12 @@ import java.util.Scanner;
 import com.dealership.data.vehicle.VehicleMake;
 import com.dealership.data.vehicle.VehicleModel;
 import com.dealership.data.vehicle.VehicleType;
+import com.dealership.models.Transaction;
 import com.dealership.models.Vehicle;
 
 public class InventoryManager {
 	
+    SalesService salesService = new SalesService();
 	private List<Vehicle> vehicles = new ArrayList<>();
 
 	
@@ -159,6 +161,33 @@ public class InventoryManager {
     addVehicle(vehicle); // ← Important: don't forget to add it!
     System.out.println("\n✅ Vehicle added successfully!\n");
 }
+	public void sellVehicle (Scanner scanner) {
+		
+        System.out.println("Enter the VIN number of the vehicle to sell:");
+        String vinNumber = scanner.nextLine();
+        Vehicle soldVehicle = null;
+		for (Vehicle v : vehicles)
+		{
+			if(v.getVinNumber().equalsIgnoreCase(vinNumber)) 
+			{
+			   soldVehicle = v;
+	           System.out.println("✅ Vehicle sold successfully!");
+	           break;
+
+			}else   System.out.println("❌ No vehicle found with that VIN.");
+
+		}
+	       salesService.recordSale(soldVehicle);
+		   vehicles.remove(soldVehicle);
+
+
+		
+	}
+	public void viewAllTransaction() 
+	{
+		salesService.viewAllTransactions();
+	}
+
 }
 
 

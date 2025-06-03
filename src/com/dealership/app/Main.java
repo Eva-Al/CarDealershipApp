@@ -11,7 +11,6 @@ public class Main {
     	
         Scanner scanner = new Scanner(System.in);
         InventoryManager inventoryManager = new InventoryManager();
-        SalesService salesService = new SalesService();
 
         while (true) {
             System.out.println("===== Car Dealership Menu ======\r\n"
@@ -40,9 +39,11 @@ public class Main {
             case 2 :  
                 inventoryManager.getAllVehicles();
                 break;      
-            case 3 :             	
+            case 3 :
+            	inventoryManager.sellVehicle(scanner);
                 break;               
-            case 4 :  
+            case 4 : 
+            	inventoryManager.viewAllTransaction();
                 break;                
             case 5 :  
            	  System.out.println("Exiting... Thank you!");
