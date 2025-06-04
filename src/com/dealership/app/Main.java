@@ -46,7 +46,7 @@ public class Main {
             	inventoryManager.viewAllTransaction();
                 break;                
             case 5 :  
-           	  System.out.println("Exiting... Thank you!");
+           	  System.out.println("Thank you for using the dealership system.");
            	scanner.close();              
            	return;
            	default:

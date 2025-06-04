@@ -2,15 +2,12 @@ package com.dealership.services;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
-
 import com.dealership.data.vehicle.VehicleMake;
 import com.dealership.data.vehicle.VehicleModel;
 import com.dealership.data.vehicle.VehicleType;
-import com.dealership.models.Transaction;
 import com.dealership.models.Vehicle;
 
 public class InventoryManager {
